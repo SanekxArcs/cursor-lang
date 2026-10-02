@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <PublishSingleFile>false</PublishSingleFile>
+    <Product>Language Cursor</Product>
+    <AssemblyTitle>Language Cursor</AssemblyTitle>
+    <Description>Shows the active keyboard language next to your pointer.</Description>
+    <Version>2.0.0</Version>
+    <!-- WPF reads DPI awareness from app.manifest; the WinForms-only API does not apply. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- WinForms is only used for the tray icon and overlay window; keep its types out of WPF code. -->
+    <Using Remove="System.Drawing" />
+    <Using Remove="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+    <Resource Include="Assets\app.png" />
+  </ItemGroup>
+</Project>
